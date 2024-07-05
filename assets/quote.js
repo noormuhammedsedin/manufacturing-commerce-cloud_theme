@@ -13,6 +13,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
                 z-index: 1000;
                 width: 500px;
+                height:600px;
+                overflow-y:scroll;
             }
             #popup-overlay {
                 display: none;
@@ -62,8 +64,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 <input type="email" id="customer-email" name="email" required>
                 <label for="customer-phone">Phone Number</label>
                 <input type="tel" id="customer-phone" name="phone" required>
-                <label for="shipping-address">Shipping Address</label>
+                <label for="shipping-address">Address</label>
                 <input type="text" id="shipping-address" name="address" required>
+                <label for="apartment-address">Apartment,suite,etc.</label>
+                <input type="text" id="apartment-address" name="apartment" required>
+                <label for="city-address">City</label>
+                <input type="text" id="city-address" name="city" required>
+                <label for="postal-address">Postal code</label>
+                <input type="text" id="postal-address" name="postal" required>
                 <button type="submit" class="button">Submit</button>
             </form>
         </div>
@@ -105,14 +113,16 @@ document.addEventListener("DOMContentLoaded", function() {
         const formData = {
             products: products,
             customerInfo: {
-                first_name: document.getElementById('customer-first-name').value,
-                last_name: document.getElementById('customer-last-name').value,
+                firstName: document.getElementById('customer-first-name').value,
+                lastName: document.getElementById('customer-last-name').value,
                 email: document.getElementById('customer-email').value,
                 phone: document.getElementById('customer-phone').value,
-                address: document.getElementById('shipping-address').value
+                address: document.getElementById('shipping-address').value,
+                apartment:document.getElementById('apartment-address').value,
+                city:document.getElementById('city-address').value,
+                postal:document.getElementById('postal-address').value
             }
         };
-
         try {
             const response = await fetch('http://localhost:3000/submit-quote', {
                 method: 'POST',
